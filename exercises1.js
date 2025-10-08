@@ -345,23 +345,55 @@ const sumarDos = (a, b) => a + b;
 // Datos de prueba:
 console.log(sumarDos(5)); // Debería mostrar: 7
 
+
 console.log("\nEjercicio 25: Funciones como argumentos");
 // Crear función 'aplicarOperacionAvanzada' que reciba dos números y una función
+
+function multiplicar(a, b) {
+  return a * b;
+}
+function aplicarOperacionAvanzada(num1, num2, operacion) {
+  return operacion(num1, num2);
+}
+
+
+
 // Datos de prueba:
 console.log(aplicarOperacionAvanzada(3,4,multiplicar)); // Debería mostrar: 12
 
+
 console.log("\nEjercicio 26: Closure simple");
 // Crear función 'generadorDeID' que devuelva IDs incrementales
+
+const nuevoID = (function() {
+  let id = 0;
+  return function() {
+    id += 1;
+    return id;
+  };
+})();
+
+
 // Datos de prueba:
 console.log(nuevoID()); // Debería mostrar: 1
 console.log(nuevoID()); // Debería mostrar: 2
 console.log(nuevoID()); // Debería mostrar: 3
 
+
 console.log("\nEjercicio 27: Closure con configuración");
 // Crear función 'contadorInicial' que empiece desde un número inicial
+function contadorInicial(valor) {
+  let contador = valor;
+  return function() {
+    contador += 1;
+    return contador;
+  };
+}
+const contarDesde5 = contadorInicial(5);
 // Datos de prueba:
 console.log(contarDesde5()); // Debería mostrar: 6
 console.log(contarDesde5()); // Debería mostrar: 7
+
 
 // ------------------------------
 // EJERCICIOS COMBINADOS
@@ -369,17 +401,38 @@ console.log(contarDesde5()); // Debería mostrar: 7
 
 console.log("\nEjercicio 28: Condicional + bucle");
 // Crear función 'imprimirMultiplos' que reciba n y límite e imprima múltiplos de n
+function imprimirMultiplos(n, limite) {
+  for (let i = n; i <= limite; i += n) {
+    console.log(i);
+  }
+}
 // Datos de prueba:
 imprimirMultiplos(3,15);
 // Debería imprimir: 3 6 9 12 15
 
+
 console.log("\nEjercicio 29: Array + condicional");
 // Crear función 'filtrarPares' que devuelva solo los números pares de un array
+function filtrarPares(arr) {
+  return arr.filter(num => num % 2 === 0);
+}
 // Datos de prueba:
 console.log(filtrarPares([1,2,3,4,5,6])); // Debería mostrar: [2,4,6]
 
+
 console.log("\nEjercicio 30: Objeto + map + función");
 // Crear función 'promediarEdades' que devuelva el promedio de edades de un array de personas
+function promediarEdades(personas) {
+  const edades = personas.map(persona => persona.edad);
+  const sumaEdades = edades.reduce((acum, edad) => acum + edad, 0);
+  return sumaEdades / edades.length;
+}
+
+const grupo = [
+  { nombre: "Ana", edad: 25 },
+  { nombre: "Luis", edad: 30 },
+  { nombre: "Carlos", edad: 30 }
+];
 // Datos de prueba:
 console.log(promediarEdades(grupo)); // Debería mostrar: 28.333333333333332
 */
